@@ -47,6 +47,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\CommandListener.cs" />
     <Compile Include="Types\Internal\Promise.cs" />
+    <Compile Include="Types\Internal\Trade.cs" />
+    <Compile Include="Types\TradeListener.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
