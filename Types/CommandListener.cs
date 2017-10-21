@@ -31,22 +31,9 @@ namespace KTypes.Types
             {
                 _proxy.HookCommand(c, (client, cm, args) =>
                 {
-                    try
-                    {
-                        if (args == null)
-                            args = new string[0];
-                        promise.InvokeThen(client, args);
-                    }
-                    catch (Exception e)
-                    {
-                        try
-                        {
-                            promise.InvokeCatch(e);
-                        } catch (UnhandledPromiseRejectionException uprException)
-                        {
-                            throw uprException;
-                        }
-                    }
+                    if (args == null)
+                        args = new string[0];
+                    promise.InvokeThen(client, args);
                 });
             }
             return promise;

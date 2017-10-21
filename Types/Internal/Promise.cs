@@ -23,7 +23,19 @@ namespace KTypes.Types.Internal
                 throw new Exception(nameof(_thenAction) + " cannot be null.");
             if (args == null)
                 args = new object[0];
-            _thenAction.Invoke(args);
+            try
+            {
+                _thenAction.Invoke(args);
+            } catch (Exception e)
+            {
+                try
+                {
+                    _catchAction.Invoke(new object[1] { e });
+                } catch
+                {
+                    throw new UnhandledPromiseRejectionException();
+                }
+            }
         }
 
         /// <summary>
