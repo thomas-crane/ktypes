@@ -10,7 +10,9 @@ namespace KTypes.Types
         private Proxy _proxy;
         public CommandListener(Proxy proxy)
         {
-            _proxy = proxy ?? throw new ArgumentNullException(nameof(proxy));
+            if (proxy == null)
+                throw new ArgumentNullException(nameof(proxy));
+            _proxy = proxy;
         }
 
         /// <summary>

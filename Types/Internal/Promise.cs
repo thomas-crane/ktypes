@@ -60,7 +60,9 @@ namespace KTypes.Types.Internal
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="action"/> is null</exception>
         public Promise Then(Action<object[]> action)
         {
-            _thenAction = action ?? throw new ArgumentNullException(nameof(action));
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+            _thenAction = action;
             return this;
         }
 
@@ -72,7 +74,9 @@ namespace KTypes.Types.Internal
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="action"/> is null</exception>
         public Promise Catch(Action<object[]> action)
         {
-            _catchAction = action ?? throw new ArgumentNullException(nameof(action));
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+            _catchAction = action;
             return this;
         }
     }
