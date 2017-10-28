@@ -49,6 +49,9 @@
     <Compile Include="Types\Internal\IPromise.cs" />
     <Compile Include="Types\Internal\PromiseBase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies\Lib K Relay.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
