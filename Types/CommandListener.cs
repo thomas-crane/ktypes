@@ -1,6 +1,7 @@
 ﻿using KTypes.Exceptions;
 using KTypes.Types.Internal;
 using Lib_K_Relay;
+using Lib_K_Relay.Networking;
 using System;
 
 namespace KTypes.Types
@@ -20,9 +21,9 @@ namespace KTypes.Types
         /// <param name="cmd">The commands to listen for.</param>
         /// <returns>A Promise which will be resolved when one of the commands is used.</returns>
         /// <exception cref="UnhandledPromiseRejectionException">Thrown if the promise rejection is not handled.</exception>
-        public Promise On(params string[] cmd)
+        public CommandPromise On(params string[] cmd)
         {
-            Promise promise = new Promise();
+            CommandPromise promise = new CommandPromise();
             if (_proxy == null)
             {
                 throw new Exception(nameof(_proxy) + " cannot be null.");
@@ -33,10 +34,14 @@ namespace KTypes.Types
                 {
                     if (args == null)
                         args = new string[0];
-                    promise.InvokeThen(client, args);
+                    promise.Resolve(client, args);
                 });
             }
             return promise;
         }
+    }
+
+    public sealed class CommandPromise : PromiseBase<Client, string[]>
+    {
     }
 }
